@@ -9,12 +9,9 @@
     w25q16: w25q16@0 {
         compatible = "nordic,qspi-nor";
         reg = <0>;
-        sck-frequency = <104000000>;
-        jedec-id = [ef 40 15];              /* см. таблицу выше, сверьте с маркировкой чипа */
-        quad-enable-requirements = "S2B1v1"; /* Winbond: QE = бит1 SR2, тот же механизм, что у P25Q16H */
-        size = <16777216>;                   /* 16 Мбит = 2 МБ, ёмкость та же, что у P25Q16H */
-        has-dpd;
-        t-enter-dpd = <3000>;
-        t-exit-dpd = <8000>;
+        sck-frequency = <8000000>;   /* сильно снижаем для теста, было 104 МГц */
+        jedec-id = [ef 40 15];
+        size = <16777216>;
+        /* has-dpd, t-enter-dpd, t-exit-dpd — временно убраны */
     };
 };
