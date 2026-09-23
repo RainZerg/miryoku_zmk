@@ -1,0 +1,20 @@
+/*
+ * Клон XIAO BLE с флешем Winbond W25Q16 вместо штатного PUYA P25Q16H.
+ * Заменяем узел флеша с правильным JEDEC ID.
+ */
+
+&qspi {
+    /delete-node/ p25q16h@0;
+
+    w25q16: w25q16@0 {
+        compatible = "nordic,qspi-nor";
+        reg = <0>;
+        sck-frequency = <104000000>;
+        jedec-id = [ef 40 15];              /* см. таблицу выше, сверьте с маркировкой чипа */
+        quad-enable-requirements = "S2B1v1"; /* Winbond: QE = бит1 SR2, тот же механизм, что у P25Q16H */
+        size = <16777216>;                   /* 16 Мбит = 2 МБ, ёмкость та же, что у P25Q16H */
+        has-dpd;
+        t-enter-dpd = <3000>;
+        t-exit-dpd = <8000>;
+    };
+};
