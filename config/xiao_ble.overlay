@@ -1,3 +1,7 @@
+&reg0 {
+    status = "disabled";
+};
+
 &p25q16h {
     jedec-id = [ef 40 15];
 };
